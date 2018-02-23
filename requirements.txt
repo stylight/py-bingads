@@ -1,2 +1,2 @@
-bingads == 11.5.5.1
+bingads == 11.5.8
 six

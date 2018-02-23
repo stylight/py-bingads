@@ -37,7 +37,7 @@ setuptools.setup(
     package_data={'': ['*.rst']},
     include_package_data=True,
     install_requires=[
-        'bingads==11.5.5.1',
+        'bingads==11.5.8',
         'six',
     ],
     keywords='python bingads bing ads api'

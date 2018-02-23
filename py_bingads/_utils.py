@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 """ Random util functions. """
-import collections as _collections
 import functools as _ft
 import itertools as _it
 import logging as _logging
-
-import six as _six
 
 import suds as _suds
 
