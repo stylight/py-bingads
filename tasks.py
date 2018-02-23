@@ -25,6 +25,7 @@ def lint(ctx):
     if exe is None:
         raise RuntimeError("pylint not found")
 
+    # FIXME
     with ctx.shell.root_dir():
         ctx.run(ctx.c('%s --rcfile pylintrc %s', exe, ctx.package),
                 echo=True)
@@ -37,7 +38,45 @@ def deps(ctx):
 
 @_invoke.task
 def gendocs(ctx):
-    ctx.run("sphinx-build docs docs/_build")
+    ctx.run('sphinx-build docs docs/_build')
+
+
+@_invoke.task(clean)
+def test(ctx):
+    """ Run the test suite and measure code coverage. """
+    with ctx.shell.root_dir():
+        command = ['py.test', '-c', 'test.ini', '-vv', '-s',
+                   '--doctest-modules', '--color=yes', '--exitfirst']
+        options = [
+            ctx.c('--cov=%(package)s', package=ctx.package),
+            '--cov-config=test.ini',
+            '--cov-report=html',
+            '--no-cov-on-fail',
+        ]
+        ctx.run(' '.join(command + options), echo=True)
+
+
+@_invoke.task
+def tox(ctx, rebuild=False, env=None, hashseed=None):
+    """ Run the test suite using tox """
+    exe = ctx.shell.frompath('tox')
+    if exe is None:
+        raise RuntimeError("tox not found")
+    args = [exe]
+
+    cmd = '%s -c test.ini'
+    if rebuild:
+        cmd += ' -r'
+    if env is not None:
+        cmd += ' -e %s'
+        args.append(env)
+
+    if hashseed is not None:
+        cmd += ' --hashseed %s'
+        args.append(hashseed)
+
+    with ctx.shell.root_dir():
+        ctx.run(ctx.c(cmd, *args), echo=True)
 
 
 env = dict(
@@ -54,5 +93,5 @@ namespace.configure(env)
 namespace.add_task(clean)
 namespace.add_task(lint)
 namespace.add_task(deps)
-
-
+namespace.add_task(test)
+namespace.add_task(tox)

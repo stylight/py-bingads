@@ -33,7 +33,7 @@ import shutil as _shutil
 import sys as _sys
 import tempfile as _tempfile
 
-root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+root = _os.path.dirname(_os.path.abspath(__file__))
 
 
 @_contextlib.contextmanager

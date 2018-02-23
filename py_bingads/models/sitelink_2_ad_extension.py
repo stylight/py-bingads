@@ -2,13 +2,14 @@
 """ Model for Sitelink2AdExtension. """
 
 from py_bingads import _constants as _c
-from py_bingads import models as _models
 from py_bingads import _utils
+
+from . import AdExtension
 
 # pylint: disable=redefined-builtin, invalid-name
 
 
-class Sitelink2AdExtension(_models.AdExtension):
+class Sitelink2AdExtension(AdExtension):
     """ Represent a single Sitelink2AdExtension object. """
 
     TYPE_NAME = 'Sitelink2AdExtension'
@@ -16,7 +17,7 @@ class Sitelink2AdExtension(_models.AdExtension):
     def __init__(self, id=None, display_text=None, final_url=None,
                  description1=None, description2=None, device_preference=None):
         """ Init. """
-        _models.AdExtension.__init__(self)
+        AdExtension.__init__(self)
         self.id = id
         self.display_text = display_text
         self.final_url = final_url

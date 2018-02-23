@@ -34,7 +34,23 @@ Usage
 Running tests & coverage
 ------------------------
 
-[to do]
+The whole test suite is run by:
+
+::
+
+    inv test
+
+To run a single test just run `py.test -vv --doctest-modules
+tests/.../test_something.py` inside the virtual env.
+
+The code coverage is stored in `.coverage` (pickled) and in the \_coverage/
+directory (HTML).
+
+The HTML coverage report can then be opened in a browser by:
+
+::
+
+    open _coverage/index.html
 
 Documentation
 -------------

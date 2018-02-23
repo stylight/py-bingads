@@ -72,3 +72,9 @@ target/
 
 # Bing refresh file
 refresh.txt
+
+### test stuff
+.coverage
+_coverage
+.circle/*
+.pytest_cache/*
