@@ -78,3 +78,6 @@ refresh.txt
 _coverage
 .circle/*
 .pytest_cache/*
+
+# pypi
+.pypirc
