@@ -4,11 +4,11 @@ Contributing to python-bingads
 We love your input! We want to make contributing to this project as easy
 and transparent as possible, whether it's:
 
--  Reporting a bug
--  Discussing the current state of the code
--  Submitting a fix
--  Proposing new features
--  Becoming a maintainer
+*  Reporting a bug
+*  Discussing the current state of the code
+*  Submitting a fix
+*  Proposing new features
+*  Becoming a maintainer
 
 We Develop with Github
 ----------------------
@@ -50,17 +50,17 @@ Craig Hockenberry`_.
 
 **Great Bug Reports** tend to have:
 
--  A quick summary and/or background
--  Steps to reproduce
+*  A quick summary and/or background
+*  Steps to reproduce
 
-   -  Be specific!
-   -  Give sample code if you can. For example, this `stackoverflow
+   *  Be specific!
+   *  Give sample code if you can. For example, this `stackoverflow
       question`_ includes sample code that *anyone* with a base R setup
       can run to reproduce
 
--  What you expected would happen
--  What actually happens
--  Notes (possibly including why you think this might be happening, or
+*  What you expected would happen
+*  What actually happens
+*  Notes (possibly including why you think this might be happening, or
    stuff you tried that didn't work)
 
 People *love* thorough bug reports. I'm not even kidding.
@@ -70,36 +70,36 @@ Use a Consistent Coding Style
 Before you contribute code to
 this project please make sure you have read the following documents:
 
- * [PEP 8 -- Style Guide for Python Code](http://www.python.org/dev/peps/pep-0008/)
-   This is comparable to the quality of your "handwriting". Make sure your code
-   looks like everybody else's code. Install flake8 and use it.
+* [PEP 8 -- Style Guide for Python Code](http://www.python.org/dev/peps/pep-0008/)
+  This is comparable to the quality of your "handwriting". Make sure your code
+  looks like everybody else's code. Install flake8 and use it.
 
-> “Any fool can write code that a computer can understand. Good programmers
-> write code that humans can understand.”
-> -- Martin Fowler, "Refactoring: Improving the Design of Existing Code"
+    “Any fool can write code that a computer can understand. Good programmers
+    write code that humans can understand.”
+    -- Martin Fowler, "Refactoring: Improving the Design of Existing Code"
 
- * [PEP 20 -- The Zen of Python](http://www.python.org/dev/peps/pep-0020/)
-   If you find yourself in a situation where you need to make an architectural
-   decision and are unsure, use this to decide.
+* [PEP 20 -- The Zen of Python](http://www.python.org/dev/peps/pep-0020/)
+  If you find yourself in a situation where you need to make an architectural
+  decision and are unsure, use this to decide.
 
- * [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-   Read this document very carefully and follow the rules.
+* [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+  Read this document very carefully and follow the rules.
 
-> BE CONSISTENT.
+    BE CONSISTENT.
 
-> If you're editing code, take a few minutes to look at the code around you and
-> determine its style. If they use spaces around all their arithmetic operators,
-> you should too. If their comments have little boxes of hash marks around them,
-> make your comments have little boxes of hash marks around them too.
+    If you're editing code, take a few minutes to look at the code around you and
+    determine its style. If they use spaces around all their arithmetic operators,
+    you should too. If their comments have little boxes of hash marks around them,
+    make your comments have little boxes of hash marks around them too.
 
-> The point of having style guidelines is to have a common vocabulary of coding so
-> people can concentrate on what you're saying rather than on how you're saying
-> it. We present global style rules here so people know the vocabulary, but local
-> style is also important. If code you add to a file looks drastically different
-> from the existing code around it, it throws readers out of their rhythm when
-> they go to read it. Avoid this.
+    The point of having style guidelines is to have a common vocabulary of coding so
+    people can concentrate on what you're saying rather than on how you're saying
+    it. We present global style rules here so people know the vocabulary, but local
+    style is also important. If code you add to a file looks drastically different
+    from the existing code around it, it throws readers out of their rhythm when
+    they go to read it. Avoid this.
 
-> -- Parting Words of Google's Python Style Guide
+    -- Parting Words of Google's Python Style Guide
 
 License
 -------
