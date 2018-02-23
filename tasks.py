@@ -44,18 +44,18 @@ def gendocs(ctx):
 
 
 @_invoke.task(clean)
-def test(ctx):
+def test(ctx, options=None):
     """ Run the test suite and measure code coverage. """
     with ctx.shell.root_dir():
         command = ['py.test', '-c', 'test.ini', '-vv', '-s',
                    '--doctest-modules', '--color=yes', '--exitfirst']
-        options = [
+        cov = [
             ctx.c('--cov=%(package)s', package=ctx.package),
             '--cov-config=test.ini',
             '--cov-report=html',
             '--no-cov-on-fail',
         ]
-        ctx.run(' '.join(command + options), echo=True)
+        ctx.run(' '.join(command + cov + (options or [])), echo=True)
 
 
 @_invoke.task(clean)
