@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """ Invoke tasks. """
+import os as _os
+
 import invoke as _invoke
 
 import _shell
@@ -56,6 +58,18 @@ def test(ctx):
         ctx.run(' '.join(command + options), echo=True)
 
 
+@_invoke.task(clean)
+def testcircle(ctx):
+    """ Run the test suite and measure code coverage. """
+    test(ctx, [
+        '--junitxml',
+        _os.path.join(_os.environ['CIRCLE_TEST_REPORTS'], 'pytest.xml'),
+        '--cov-report=html',
+        '--cov-report=xml',
+        '--cov-report=term',
+    ])
+
+
 @_invoke.task
 def tox(ctx, rebuild=False, env=None, hashseed=None):
     """ Run the test suite using tox """
@@ -91,7 +105,8 @@ env = dict(
 namespace = _invoke.Collection()
 namespace.configure(env)
 namespace.add_task(clean)
-namespace.add_task(lint)
 namespace.add_task(deps)
+namespace.add_task(lint)
 namespace.add_task(test)
+namespace.add_task(testcircle)
 namespace.add_task(tox)

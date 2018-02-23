@@ -1,11 +1,22 @@
+general:
+  branches:
+      only:
+        - master
+        - staging
+
 machine:
   python:
     version: 3.5.1
 
 dependencies:
+
   post:
-    - pip install -r development.txt
+    - inv deps
 
 test:
   override:
-    - py.test
+    - >
+      if [ ! -s .pulled ]; then inv lint && inv test.circleci; fi
+  post:
+    - if [ ! -s .pulled ]; then cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"; fi
+
