@@ -93,6 +93,17 @@ def tox(ctx, rebuild=False, env=None, hashseed=None):
         ctx.run(ctx.c(cmd, *args), echo=True)
 
 
+
+@_invoke.task
+def pypi(ctx, test=False, live=False):
+    assert test ^ live, (
+        'Must specify whether to upload to test or live PyPI'
+    )
+    _env = 'test' if test else 'pypi'
+    with ctx.shell.root_dir():
+        ctx.run(ctx.c('twine upload -r %s dist/*', _env), echo=True)
+
+
 env = dict(
     package='py_bingads',
     shell=dict(
@@ -107,6 +118,7 @@ namespace.configure(env)
 namespace.add_task(clean)
 namespace.add_task(deps)
 namespace.add_task(lint)
+namespace.add_task(pypi)
 namespace.add_task(test)
 namespace.add_task(testcircle)
 namespace.add_task(tox)
