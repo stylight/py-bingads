@@ -16,7 +16,7 @@ dependencies:
 test:
   override:
     - >
-      if [ ! -s .pulled ]; then inv test.circleci; fi
+      if [ ! -s .pulled ]; then inv testcircle; fi
   post:
     - if [ ! -s .pulled ]; then cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"; fi
 
