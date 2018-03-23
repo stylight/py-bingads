@@ -1,19 +1,81 @@
+python_bingads_workspace: &python_bingads_workspace
+  machine:
+    python:
+      version: 3.5.1
+
 version: 2
 jobs:
-  lint:
+  checkout_code:
+    <<: *python_bingads_workspace
     steps:
-      - run: pip install invoke==0.22.1
-      - run: inv check
+      - run:
+          name: Prepare working directory / virtualenv
+          command: |
+            mkdir -p cs_workspace/src
+            python -m venv .
+      - checkout:
+          path: python_bingads_workspace/src/
+      - persist_to_workspace:
+          root: .
+          paths: cs_workspace
+
+  dependencies:
+    <<: *python_bingads_workspace
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install / Restore dependencies
+          command: |
+              cd python_bingads_workspace
+              . bin/activate
+              cd src/
+              pip install -r checkout-requirements.txt
+      - persist_to_workspace:
+          root: .
+          paths: python_bingads_workspace
+
+  lint:
+    <<: *python_bingads_workspace
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run pylint
+          command: |
+              cd python_bingads_workspace
+              . bin/activate
+              cd src
+              inv check
 
   test:
+    <<: *python_bingads_workspace
     steps:
-      - run: pip install -r development.txt
-      - run: inv testcircle
-      - run: cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run test-suite
+          command: |
+              export CIRCLE_TEST_REPORTS="~/coverage_reports"
+              cd python_bingads_workspace
+              . bin/activate
+              cd src
+              inv testcircle
+      - store_artifacts:
+          path: python_bingads_workspace/src/_coverage/
+          destination: coverage
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - lint
-      - test
+      - checkout_code
+      - dependencies:
+          requires:
+            - checkout_code
+      - lint:
+          requires:
+            - dependencies
+      - test:
+          requires:
+            - dependencies
