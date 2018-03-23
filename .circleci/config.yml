@@ -11,6 +11,7 @@ jobs:
           name: Prepare working directory / virtualenv
           command: |
             mkdir -p python_bingads_workspace/src
+            cd python_bingads_workspace
             python -m venv .
       - checkout:
           path: python_bingads_workspace/src/
