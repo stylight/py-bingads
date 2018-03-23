@@ -21,6 +21,19 @@ def clean(ctx):
     )
 
 
+@_invoke.task
+def deps(ctx):
+    with ctx.shell.root_dir():
+        ctx.run('pip install -r development.txt', echo=True)
+
+
+@_invoke.task
+def docs(ctx):
+    with ctx.shell.root_dir():
+        ctx.run('make -C docs html')
+        ctx.run('open docs/_build/html/index.html')
+
+
 @_invoke.task(clean)
 def lint(ctx):
     exe = ctx.shell.frompath('pylint')
@@ -34,13 +47,13 @@ def lint(ctx):
 
 
 @_invoke.task
-def deps(ctx):
-    ctx.run('pip install -r development.txt', echo=True)
-
-
-@_invoke.task
-def gendocs(ctx):
-    ctx.run('sphinx-build docs docs/_build')
+def pypi(ctx, test=False, live=False):
+    assert test ^ live, (
+        'Must specify whether to upload to test or live PyPI'
+    )
+    _env = 'test' if test else 'pypi'
+    with ctx.shell.root_dir():
+        ctx.run(ctx.c('twine upload -r %s dist/*', _env), echo=True)
 
 
 @_invoke.task(clean)
@@ -93,17 +106,6 @@ def tox(ctx, rebuild=False, env=None, hashseed=None):
         ctx.run(ctx.c(cmd, *args), echo=True)
 
 
-
-@_invoke.task
-def pypi(ctx, test=False, live=False):
-    assert test ^ live, (
-        'Must specify whether to upload to test or live PyPI'
-    )
-    _env = 'test' if test else 'pypi'
-    with ctx.shell.root_dir():
-        ctx.run(ctx.c('twine upload -r %s dist/*', _env), echo=True)
-
-
 env = dict(
     package='py_bingads',
     shell=dict(
@@ -115,8 +117,10 @@ env = dict(
 
 namespace = _invoke.Collection()
 namespace.configure(env)
+
 namespace.add_task(clean)
 namespace.add_task(deps)
+namespace.add_task(docs)
 namespace.add_task(lint)
 namespace.add_task(pypi)
 namespace.add_task(test)
