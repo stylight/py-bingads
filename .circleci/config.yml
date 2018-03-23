@@ -1,31 +1,19 @@
-version: 2.0
+version: 2
 jobs:
-  dependencies:
-    steps:
-      - run: pip install -r development.txt
-
   lint:
     steps:
+      - run: pip install invoke==0.22.1
       - run: inv check
 
   test:
     steps:
-      - run: if [ ! -s .pulled ]; then inv testcircle; fi
-      - run: if [ ! -s .pulled ]; then cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"; fi
+      - run: pip install -r development.txt
+      - run: inv testcircle
+      - run: cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"
 
 workflows:
   version: 2
-  build:
+  build_and_test:
     jobs:
-      - dependencies
-          filters:
-            branches:
-              only:
-                - master
-                - staging
       - lint
-          requires:
-            - dependencies
-      - test
-          requires:
-            - lint
+      - test:
