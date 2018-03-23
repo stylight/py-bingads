@@ -10,13 +10,13 @@ jobs:
       - run:
           name: Prepare working directory / virtualenv
           command: |
-            mkdir -p cs_workspace/src
+            mkdir -p python_bingads_workspace/src
             python -m venv .
       - checkout:
           path: python_bingads_workspace/src/
       - persist_to_workspace:
           root: .
-          paths: cs_workspace
+          paths: python_bingads_workspace
 
   dependencies:
     <<: *python_bingads_workspace
