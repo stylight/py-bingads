@@ -1,4 +1,4 @@
-version: 2
+version: 2.0
 jobs:
   dependencies:
     steps:
@@ -15,7 +15,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  build:
     jobs:
       - dependencies
           filters:
