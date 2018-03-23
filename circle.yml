@@ -1,22 +1,31 @@
-general:
-  branches:
-      only:
-        - master
-        - staging
+version: 2
+jobs:
+  dependencies:
+    steps:
+      - run: pip install -r development.txt
 
-machine:
-  python:
-    version: 3.5.1
+  lint:
+    steps:
+      - run: inv check
 
-dependencies:
+  test:
+    steps:
+      - run: if [ ! -s .pulled ]; then inv testcircle; fi
+      - run: if [ ! -s .pulled ]; then cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"; fi
 
-  post:
-    - inv deps
-
-test:
-  override:
-    - >
-      if [ ! -s .pulled ]; then inv testcircle; fi
-  post:
-    - if [ ! -s .pulled ]; then cp -r coverage.xml _coverage/* "${CIRCLE_TEST_REPORTS}/"; fi
-
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - dependencies
+          filters:
+            branches:
+              only:
+                - master
+                - staging
+      - lint
+          requires:
+            - dependencies
+      - test
+          requires:
+            - lint
