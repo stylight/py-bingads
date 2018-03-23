@@ -1,7 +1,6 @@
 python_bingads_workspace: &python_bingads_workspace
-  machine:
-    python:
-      version: 3.5.1
+  docker:
+    - image: circleci/python:3.6.4
 
 version: 2
 jobs:
