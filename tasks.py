@@ -31,7 +31,7 @@ def deps(ctx):
 def docs(ctx):
     with ctx.shell.root_dir():
         ctx.run('make -C docs html')
-        ctx.run('open docs/_build/html/index.html')
+        ctx.run('open docs/build/html/index.html')
 
 
 @_invoke.task(clean)
