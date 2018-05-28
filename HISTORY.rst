@@ -4,6 +4,7 @@ Release History
 ---------------
 
 
+0.1.2 (2018-05-28)
 ++++++++++++++++++
 
 - Fix encoding issues
