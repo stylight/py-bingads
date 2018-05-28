@@ -46,7 +46,7 @@ jobs:
               cd python_bingads_workspace
               . bin/activate
               cd src
-              inv check
+              inv lint
 
   test:
     <<: *python_bingads_workspace
