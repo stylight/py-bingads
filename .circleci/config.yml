@@ -73,9 +73,6 @@ workflows:
       - dependencies:
           requires:
             - checkout_code
-      - lint:
-          requires:
-            - dependencies
       - test:
           requires:
             - dependencies
