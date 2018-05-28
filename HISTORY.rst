@@ -3,6 +3,7 @@
 Release History
 ---------------
 
+0.1.3 (2018-05-28)
 ++++++++++++++++++
 
 - Fix negative keywords

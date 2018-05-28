@@ -26,7 +26,7 @@ packages = [package_name] + [
 
 setuptools.setup(
     name=package_name,
-    version='0.1.2',
+    version='0.1.3',
     description='Wraps BingAds Python SDK to make it more Pythonic',
     long_description=readme + '\n\n' + history,
     author='Julie MacDonell',
