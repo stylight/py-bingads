@@ -3,7 +3,7 @@
 Release History
 ---------------
 
-Changes with version
+Changes with version 0.1.1 (2018-05-28)
 ++++++++++++++++++
 
 - Allow tuples to be passed as negative keywords
