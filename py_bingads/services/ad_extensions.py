@@ -142,7 +142,7 @@ class AdExtensions(_base.BingAds):
 
     @_utils.print_webfault
     def update_ad_extensions(self, ad_extensions):
-        """Updates one or more ad extensions within an account’s ad extension
+        """Updates one or more ad extensions within an account's ad extension
         library.
 
         https://msdn.microsoft.com/en-us/library/bing-ads-campaign-management-
@@ -169,7 +169,7 @@ class AdExtensions(_base.BingAds):
 
     @_utils.print_webfault
     def add_ad_extensions(self, ad_extensions):
-        """Adds one or more ad extensions to an account’s ad extension library.
+        """Adds one or more ad extensions to an account's ad extension library.
 
         https://msdn.microsoft.com/en-us/library/bing-ads-campaign-management-
         addadextensions.aspx
@@ -253,7 +253,7 @@ class AdExtensions(_base.BingAds):
 
     @_utils.print_webfault
     def delete_ad_extensions(self, ad_extension_ids):
-        """Deletes one or more ad extensions from the account’s ad
+        """Deletes one or more ad extensions from the account's ad
         extension library.
 
         :type ad_extension_ids: [int]
