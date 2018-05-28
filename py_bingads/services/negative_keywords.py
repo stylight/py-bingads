@@ -168,7 +168,7 @@ class NegativeKeywords(_base.BingAds):
         :returns: A list of IDs of the created negative keywords
         """
         # TODO: Test
-        if isinstance(negative_keywords, tuple):
+        if negative_keywords and isinstance(negative_keywords[0], tuple):
             negative_keywords = [_models.NegativeKeyword(
                 text=kw[0], match_type=kw[1]
             ) for kw in negative_keywords]

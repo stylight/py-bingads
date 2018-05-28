@@ -53,6 +53,7 @@ def pypi(ctx, test=False, live=False):
     )
     _env = 'test' if test else 'pypi'
     with ctx.shell.root_dir():
+        ctx.run(ctx.c('python setup.py sdist'), echo=True)
         ctx.run(ctx.c('twine upload -r %s dist/*', _env), echo=True)
 
 
