@@ -3,6 +3,7 @@
 Release History
 ---------------
 
+0.1.4 (2018-05-29)
 ++++++++++++++++++
 
 - Remove support of tuples for negative keywords
